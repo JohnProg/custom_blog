@@ -37,7 +37,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     role: {
       type: DataTypes.ENUM,
-      values: ['superAdmin', 'admin', 'moderator', 'regular', 'guest']
+      values: ['superAdmin', 'admin', 'moderator', 'regular', 'guest'],
+      defaultValue: 'regular'
     }
 
   }, {
@@ -60,14 +61,11 @@ module.exports = (sequelize, DataTypes) => {
 
   // Instance methods
   User.prototype.hashPassword = function hashPassword() {
-    const saltRounds = 10;
-    bcrypt.hash(this.password, saltRounds, function hashP(err, hash) {
-      this.password = hash;
-    });
+    this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));
   };
 
   User.prototype.validatePassword = function valiatePassword(password) {
-    return bcrypt.compare(password, this.password, (err, res) => res);
+    return bcrypt.compareSync(password, this.password);
   };
 
   return User;

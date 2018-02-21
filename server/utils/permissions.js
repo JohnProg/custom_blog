@@ -1,4 +1,4 @@
-const roles = ['superAdmin', 'admin', 'moderator', 'regular', 'guest']
+const roles = ['superAdmin', 'admin', 'moderator', 'regular', 'guest'];
 
 const permissions = [
   'DELETE_ADMIN_USER',

@@ -1,5 +1,6 @@
 import http from 'http';
 import logger from 'js-logger';
+import 'babel-polyfill';
 
 import { app } from './server/config';
 

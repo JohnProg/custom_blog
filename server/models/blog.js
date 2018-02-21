@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     status: {
       type: DataTypes.ENUM,
-      values: ['draft', 'published', 'archived']
+      values: ['draft', 'published', 'archived'],
+      defaultValue: 'draft'
     },
     userId: {
       type: DataTypes.UUID

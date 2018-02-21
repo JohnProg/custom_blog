@@ -9,12 +9,24 @@ const Auth = {
     return token;
   },
 
-  decodeToken(token) {
+  decodeToken(req) {
+    const errors = [];
+    const token = req.headers['cb-token'];
+    if (!token) {
+      errors.push({ key: 'token', message: 'token not available' });
+      req.errors = errors;
+      req.auth = {};
+      return;
+    }
     return jwt.verify(token, secretKey, (err, decoded) => {
       if (err) {
-        return 'Error';
+        errors.push({ key: 'token', message: 'Invalid token provided' });
+        req.errors = errors;
+        req.auth = {};
+        return;
       }
-      return decoded;
+      req.errors = errors;
+      req.auth = decoded;
     });
   }
 };
