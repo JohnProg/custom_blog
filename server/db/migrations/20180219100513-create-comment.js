@@ -31,6 +31,11 @@ module.exports = {
           key: 'userId'
         }
       },
+      status: {
+        type: Sequelize.ENUM,
+        values: ['published', 'archived'],
+        defaultValue: 'published'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

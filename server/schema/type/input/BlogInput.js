@@ -1,17 +1,15 @@
 import {
   GraphQLInputObjectType,
   GraphQLString,
-  GraphQLNonNull
 } from 'graphql';
 
 const BlogInputType = new GraphQLInputObjectType({
   name: 'BlogInputType',
   fields: () => ({
-    title: { type: new GraphQLNonNull(GraphQLString) },
-    content: { type: new GraphQLNonNull(GraphQLString) },
+    title: { type: GraphQLString },
+    content: { type: GraphQLString },
     status: { type: GraphQLString },
     imgUrl: { type: GraphQLString },
-    userId: { type: GraphQLString }
   })
 });
 

@@ -15,7 +15,7 @@ const Helper = {
     });
   },
 
-  validateInputs(userInput, requiredFieldsArray) {
+  validateInputs(userInput, requiredFieldsArray = []) {
     const errors = [];
     for (let i = 0; i < requiredFieldsArray.length; i += 1) {
       if (!Object.keys(userInput).includes(requiredFieldsArray[i])) {
@@ -41,6 +41,14 @@ const Helper = {
       });
     }
     if (errors.length) throw new GraphQLCustomError(errors);
+  },
+
+  checkUserPermission() {
+    return 'User';
+  },
+
+  Pagination(payload) {
+    return payload;
   }
 };
 

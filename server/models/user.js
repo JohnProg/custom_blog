@@ -35,12 +35,16 @@ module.exports = (sequelize, DataTypes) => {
     dob: {
       type: DataTypes.STRING
     },
+    status: {
+      type: DataTypes.ENUM,
+      values: ['active', 'archived'],
+      defaultValue: 'active'
+    },
     role: {
       type: DataTypes.ENUM,
       values: ['superAdmin', 'admin', 'moderator', 'regular', 'guest'],
       defaultValue: 'regular'
-    }
-
+    },
   }, {
     classMethods: {
       associate: ({ Blog }) => {

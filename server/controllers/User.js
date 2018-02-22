@@ -6,18 +6,6 @@ import Authenticate from '../middlewares/Authentication';
 const { Op } = db.Sequelize;
 
 const UserController = {
-  getUser(userId) {
-    return db.User.findOne({
-      where: { userId }
-    })
-      .then((user) => {
-        if (!user) {
-          return 'Error';
-        }
-        return user;
-      });
-  },
-
   async getUsersByUserIds(userIds) {
     const users = await db.User.findAll({
       where: { userId: { [Op.in]: userIds } }
@@ -66,6 +54,53 @@ const UserController = {
     const token = Authenticate.generateToken(payload);
     result.token = token;
     return result;
+  },
+
+  async updateUser(input) {
+    const errors = [];
+    Helper.validateInputs(input, []);
+    const checkUser = await db.User.findOne({
+      where: { userId: input.userId }
+    });
+    if (!checkUser) {
+      errors.push({ key: '404', message: 'User not found' });
+      throw new GraphQLCustomError(errors);
+    }
+    delete input.userId;
+    const updatedUser = await checkUser.update(input);
+    return updatedUser;
+  },
+
+  async deleteUser(userId) {
+    const errors = [];
+    const checkUser = await db.User.findOne({
+      where: { userId }
+    });
+    if (!checkUser) {
+      errors.push({ key: '404', message: 'User not found' });
+      throw new GraphQLCustomError(errors);
+    }
+    checkUser.destroy();
+    return 'Deleted';
+  },
+
+  async getAllUsers() {
+    const allUsers = await db.User.findAndCountAll();
+    return allUsers;
+  },
+
+  async searchUsers(input) {
+    const { q } = input;
+    const searchResult = await db.User.findAndCountAll({
+      where: {
+        [Op.or]: [
+          { userName: { [Op.like]: `${q}%` } },
+          { email: { [Op.like]: `${q}%` } },
+          { firstName: { [Op.like]: `${q}%` } },
+          { lastName: { [Op.like]: `${q}%` } }]
+      }
+    });
+    return searchResult;
   }
 };
 

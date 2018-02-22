@@ -13,6 +13,7 @@ import {
   AddUserMutation,
   LogInUserMutation,
   AddBlogMutation,
+  EditBlogMutation,
   AddCommentMutation
 } from './mutations';
 
@@ -31,7 +32,8 @@ const RootMutationType = new GraphQLObjectType({
     AddUser: AddUserMutation,
     LogInUser: LogInUserMutation,
     AddBlog: AddBlogMutation,
-    AddComment: AddCommentMutation
+    EditBlog: EditBlogMutation,
+    AddComment: AddCommentMutation,
   })
 });
 

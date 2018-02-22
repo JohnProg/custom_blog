@@ -25,7 +25,8 @@ module.exports = {
       },
       status: {
         type: Sequelize.ENUM,
-        values: ['draft', 'published', 'archived']
+        values: ['draft', 'published', 'archived'],
+        defaultValue: 'draft'
       },
       userId: {
         type: Sequelize.UUID,

@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     userId: {
       type: DataTypes.UUID
+    },
+    status: {
+      type: DataTypes.ENUM,
+      values: ['published', 'archived'],
+      defaultValue: 'published'
     }
   }, {
     classMethods: {

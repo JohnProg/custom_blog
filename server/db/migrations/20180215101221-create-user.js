@@ -39,9 +39,15 @@ module.exports = {
       dob: {
         type: Sequelize.STRING
       },
+      status: {
+        type: Sequelize.ENUM,
+        values: ['active', 'archived'],
+        defaultValue: 'active'
+      },
       role: {
         type: Sequelize.ENUM,
-        values: ['superAdmin', 'admin', 'moderator', 'regular', 'guest']
+        values: ['superAdmin', 'admin', 'moderator', 'regular', 'guest'],
+        defaultValue: 'regular'
       },
       createdAt: {
         allowNull: false,
