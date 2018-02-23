@@ -40,6 +40,30 @@ const Helper = {
         message: 'userName field cannot be empty'
       });
     }
+    if (userInput.limit && !validator.isInt(userInput.limit)) {
+      errors.push({
+        key: 'Limit',
+        message: 'Invalid Limit'
+      });
+    }
+    if (userInput.offset && !validator.isInt(userInput.offset)) {
+      errors.push({
+        key: 'Offsite',
+        message: 'Invalid Offset'
+      });
+    }
+    if (userInput.userId && !validator.isUUID(userInput.userId)) {
+      errors.push({
+        key: 'userId',
+        message: 'Invalid userId'
+      });
+    }
+    if (userInput.blogId && !validator.isUUID(userInput.blogId)) {
+      errors.push({
+        key: 'blogId',
+        message: 'Invalid blogId'
+      });
+    }
     if (errors.length) throw new GraphQLCustomError(errors);
   },
 

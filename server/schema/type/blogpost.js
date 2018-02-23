@@ -8,6 +8,7 @@ import {
 
 import BlogPostStatusType from './blogpoststatus';
 import CommentType from './comment';
+import UserProfileType from './UserProfile';
 
 const BlogPostType = new GraphQLObjectType({
   name: 'BlogPostType',
@@ -17,7 +18,12 @@ const BlogPostType = new GraphQLObjectType({
     title: { type: new GraphQLNonNull(GraphQLString) },
     content: { type: GraphQLString },
     status: { type: BlogPostStatusType },
-    userId: { type: GraphQLString },
+    userProfile: {
+      type: UserProfileType,
+      resolve(obj, args, ctx) {
+        return ctx.loaders.usersByUserIds.load(obj.userId);
+      }
+    },
     createdAt: { type: GraphQLString },
     comments: {
       type: new GraphQLList(CommentType),

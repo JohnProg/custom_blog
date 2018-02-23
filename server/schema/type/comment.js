@@ -4,7 +4,7 @@ import {
   GraphQLString
 } from 'graphql';
 
-import UserType from './User';
+import UserProfileType from './UserProfile';
 
 const CommentType = new GraphQLObjectType({
   name: 'CommentType',
@@ -13,7 +13,7 @@ const CommentType = new GraphQLObjectType({
     content: { type: GraphQLString },
     blogId: { type: GraphQLString },
     userInfo: {
-      type: UserType,
+      type: UserProfileType,
       resolve(obj, args, { loaders }) {
         return loaders.usersByUserIds.load(obj.userId);
       }

@@ -6,7 +6,11 @@ import {
 import {
   CurrentUserQuery,
   UserByIdQuery,
-  HelloQuery
+  HelloQuery,
+  SearchBlogQuery,
+  GetAllBlogQuery,
+  GetAllUserQuery,
+  SearchUserQuery
 } from './query';
 
 import {
@@ -22,7 +26,11 @@ const RootQueryType = new GraphQLObjectType({
   fields: () => ({
     hello: HelloQuery,
     UserById: UserByIdQuery,
-    CurrentUser: CurrentUserQuery
+    CurrentUser: CurrentUserQuery,
+    SearchBlog: SearchBlogQuery,
+    AllBlog: GetAllBlogQuery,
+    AllUser: GetAllUserQuery,
+    SearchUser: SearchUserQuery
   })
 });
 

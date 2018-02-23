@@ -84,24 +84,38 @@ const UserController = {
     return 'Deleted';
   },
 
-  async getAllUsers() {
-    const allUsers = await db.User.findAndCountAll();
-    return allUsers;
+  async getAllUsers(input = {}) {
+    Helper.validateInputs(input, []);
+    const limit = input.limit || 10;
+    const offset = input.offset || 0;
+    const allUsers = await db.User.findAndCountAll({
+      limit,
+      offset,
+      order: [['createdAt']]
+    });
+    return allUsers.rows;
   },
 
   async searchUsers(input) {
-    const { q } = input;
+    Helper.validateInputs(input, []);
+    const limit = input.limit || 10;
+    const offset = input.offset || 0;
+    const checkQuery = input.q.toLowerCase().match(/\w+/g);
+    const qArray = checkQuery.map(element => `%${element}%`);
     const searchResult = await db.User.findAndCountAll({
       where: {
         [Op.or]: [
-          { userName: { [Op.like]: `${q}%` } },
-          { email: { [Op.like]: `${q}%` } },
-          { firstName: { [Op.like]: `${q}%` } },
-          { lastName: { [Op.like]: `${q}%` } }]
-      }
+          { userName: { [Op.iLike]: { [Op.any]: qArray } } },
+          { email: { [Op.iLike]: { [Op.any]: qArray } } },
+          { firstName: { [Op.iLike]: { [Op.any]: qArray } } },
+          { lastName: { [Op.iLike]: { [Op.any]: qArray } } }]
+      },
+      limit,
+      offset,
+      order: [['createdAt']]
     });
-    return searchResult;
-  }
+    return searchResult.rows;
+  },
 };
 
 

@@ -7,7 +7,7 @@ import UserType from '../type/User';
 
 const UserByIdQuery = {
   type: UserType,
-  description: 'Info of the current user identified by userId',
+  description: 'User info by Id',
   args: {
     userId: { type: new GraphQLNonNull(GraphQLString) }
   },

@@ -62,22 +62,36 @@ const BlogController = {
     return 'Deleted';
   },
 
-  async getAllBlogs() {
-    const allBlogs = await db.Blog.findAndCountAll();
-    return allBlogs;
+  async getAllBlogs(input = {}) {
+    Helper.validateInputs(input, []);
+    const limit = input.limit || 10;
+    const offset = input.limit || 0;
+    const allBlogs = await db.Blog.findAndCountAll({
+      limit,
+      offset,
+      order: [['createdAt']]
+    });
+    return allBlogs.rows;
   },
 
   async searchBlogs(input) {
-    const { q } = input;
+    Helper.validateInputs(input, []);
+    const limit = input.limit || 10;
+    const offset = input.offset || 0;
+    const checkQuery = input.q.toLowerCase().match(/\w+/g);
+    const qArray = checkQuery.map(element => `%${element}%`);
     const searchResult = await db.Blog.findAndCountAll({
       where: {
         [Op.or]: [
-          { title: { [Op.like]: `${q}%` } },
-          { content: { [Op.like]: `${q}%` } }]
-      }
+          { title: { [Op.like]: { [Op.any]: qArray } } },
+          { content: { [Op.like]: { [Op.any]: qArray } } }]
+      },
+      limit,
+      offset,
+      order: [['createdAt']]
     });
-    return searchResult;
-  }
+    return searchResult.rows;
+  },
 };
 
 export default BlogController;
