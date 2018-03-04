@@ -11,7 +11,7 @@ const ListBlogs = ({blog}) => {
       </div>
       <div className="col-md-5">
         <h3>{blog.title}</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
+        <p>{blog.subTitle}</p>
         <Link className="btn-sm btn-primary" to={`/blog/${blog.blogId}`}>Read more</Link>
       </div>
     </div>

@@ -16,6 +16,7 @@ const BlogPostType = new GraphQLObjectType({
   fields: () => ({
     blogId: { type: GraphQLID },
     title: { type: new GraphQLNonNull(GraphQLString) },
+    subTitle: { type: GraphQLString },
     content: { type: GraphQLString },
     status: { type: BlogPostStatusType },
     imgUrl: { type: GraphQLString },

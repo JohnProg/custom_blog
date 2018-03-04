@@ -7,6 +7,7 @@ const GetAllBlogsQuery = gql`
       title
       content
       imgUrl
+      subTitle
     }
   }
 `;

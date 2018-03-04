@@ -35,7 +35,9 @@ class AuthModal extends Component {
           UserInput: {
             email: this.state.email,
             password: this.state.password,
-            userName: this.state.userName 
+            userName: this.state.userName,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName
           }
         }
       });

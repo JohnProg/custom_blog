@@ -7,6 +7,7 @@ const BlogInputType = new GraphQLInputObjectType({
   name: 'BlogInputType',
   fields: () => ({
     title: { type: GraphQLString },
+    subTitle: { type: GraphQLString },
     content: { type: GraphQLString },
     status: { type: GraphQLString },
     imgUrl: { type: GraphQLString },

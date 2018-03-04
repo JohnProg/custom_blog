@@ -15,11 +15,17 @@ class MainApp extends React.Component {
           <div className="row">
             <div className="col-lg-8 col-md-10 mx-auto">
               { loading ? <p>Loading...</p> :
-                AllBlog.map((blog, key) => 
-                <div key={key}>
-                <ListBlogs blog={blog} />
-                <hr />
-                </div>
+                AllBlog.map((blog, key) => {
+                  if (blog.imgUrl !== '') {
+                    return (
+                      <div key={key}>
+                        <ListBlogs blog={blog} />
+                        <hr />
+                      </div>
+                    )
+                  }
+                  return ''
+                }
                   )
                 }
               <hr/>
