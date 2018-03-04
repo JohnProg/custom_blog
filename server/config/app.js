@@ -33,7 +33,8 @@ app.use('/graphql', (req, res) => {
   const loaders = {
     usersByUserIds: new Dataloader(UserController.getUsersByUserIds),
     blogsByUserIds: new Dataloader(BlogController.getBlogsByUserIds),
-    commentsByBlogIds: new Dataloader(CommentController.getCommentsByBlogIds)
+    commentsByBlogIds: new Dataloader(CommentController.getCommentsByBlogIds),
+    blogsByBlogIds: new Dataloader(BlogController.getBlogByBlogIds)
   };
   graphqlHTTP({
     schema: ncSchema,

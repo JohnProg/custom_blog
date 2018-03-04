@@ -28,6 +28,11 @@ module.exports = {
         values: ['draft', 'published', 'archived'],
         defaultValue: 'draft'
       },
+      category: {
+        type: Sequelize.ENUM,
+        values: ['default', 'technology', 'politics', 'sport', 'motivation'],
+        defaultValue: 'default'
+      },
       userId: {
         type: Sequelize.UUID,
         reference: {

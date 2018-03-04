@@ -12,6 +12,7 @@ const Auth = {
   decodeToken(req) {
     const errors = [];
     const token = req.headers['cb-token'];
+    console.log(req.headers);
     if (!token) {
       errors.push({ key: 'token', message: 'token not available' });
       req.errors = errors;

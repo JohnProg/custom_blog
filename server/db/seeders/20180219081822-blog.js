@@ -14,6 +14,7 @@ const blogDefaultRows = {
         imgUrl: 'url',
         status: 'draft',
         userId: userDefaultRow.user1,
+        category: 'default',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -24,6 +25,7 @@ const blogDefaultRows = {
         imgUrl: 'url',
         status: 'draft',
         userId: userDefaultRow.user1,
+        category: 'default',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -34,6 +36,7 @@ const blogDefaultRows = {
         imgUrl: 'url',
         status: 'draft',
         userId: userDefaultRow.user2,
+        category: 'default',
         createdAt: new Date(),
         updatedAt: new Date()
       },

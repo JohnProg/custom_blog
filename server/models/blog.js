@@ -21,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
       values: ['draft', 'published', 'archived'],
       defaultValue: 'draft'
     },
+    category: {
+      type: DataTypes.ENUM,
+      values: ['default', 'technology', 'politics', 'sport', 'motivation'],
+      defaultValue: 'default'
+    },
     userId: {
       type: DataTypes.UUID
     }

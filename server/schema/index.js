@@ -10,7 +10,8 @@ import {
   SearchBlogQuery,
   GetAllBlogQuery,
   GetAllUserQuery,
-  SearchUserQuery
+  SearchUserQuery,
+  GetBlogByBlogId
 } from './query';
 
 import {
@@ -30,7 +31,8 @@ const RootQueryType = new GraphQLObjectType({
     SearchBlog: SearchBlogQuery,
     AllBlog: GetAllBlogQuery,
     AllUser: GetAllUserQuery,
-    SearchUser: SearchUserQuery
+    SearchUser: SearchUserQuery,
+    OneBlog: GetBlogByBlogId
   })
 });
 

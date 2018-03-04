@@ -5,6 +5,7 @@ import SearchBlogQuery from './SearchBlogQuery';
 import GetAllBlogQuery from './GetAllBlogQuery';
 import SearchUserQuery from './SearchUserQuery';
 import GetAllUserQuery from './GetAllUserQuery';
+import GetBlogByBlogId from './GetBlogById';
 
 export {
   CurrentUserQuery,
@@ -13,5 +14,6 @@ export {
   SearchBlogQuery,
   GetAllBlogQuery,
   SearchUserQuery,
-  GetAllUserQuery
+  GetAllUserQuery,
+  GetBlogByBlogId
 };

@@ -12,6 +12,13 @@ const BlogController = {
     });
   },
 
+  async getBlogByBlogIds(blogIds) {
+    const blogs = await db.Blog.findAll({
+      where: { blogId: { [Op.in]: blogIds } }
+    });
+    return Helper.orderedFor(blogs, blogIds, 'blogId', true);
+  },
+
   async getBlogsByUserIds(userIds) {
     const blogs = await db.Blog.findAll({
       where: { userId: { [Op.in]: userIds } }
